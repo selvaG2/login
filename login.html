@@ -102,9 +102,9 @@
 
                         <div class="social-icons">
                             <!-- Social media login icons -->
-                            <a href="#"><i class="fab fa-google"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon" id="google-icon"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social-icon" id="facebook-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon" id="twitter-icon"><i class="fab fa-twitter"></i></a>
                         </div>
 
                         <p class="mt-3">Do you want to register? <a href="#">Sign up</a></p>
@@ -214,12 +214,42 @@
             });
         };
 
+        // Function to handle social media icon click
+        const handleSocialMediaIconClick = (event) => {
+            event.preventDefault();
+            const socialMediaIconId = event.target.id;
+
+            let signupLink = "";
+
+            switch (socialMediaIconId) {
+                case "google-icon":
+                    signupLink = "https://example.com/signup/google";
+                    break;
+                case "facebook-icon":
+                    signupLink = "https://example.com/signup/facebook";
+                    break;
+                case "twitter-icon":
+                    signupLink = "https://example.com/signup/twitter";
+                    break;
+                default:
+                    signupLink = "https://example.com/signup";
+                    break;
+            }
+
+            window.open(signupLink, "_blank", "width=500,height=400");
+        };
+
         // Add event listeners
         const loginForm = document.querySelector('form');
         loginForm.addEventListener('submit', handleLogin);
 
         const forgotPasswordLink = document.querySelector('a.btn-link');
         forgotPasswordLink.addEventListener('click', handleForgotPassword);
+
+        const socialMediaIcons = document.querySelectorAll('.social-icon');
+        socialMediaIcons.forEach(icon => {
+            icon.addEventListener('click', handleSocialMediaIconClick);
+        });
     </script>
 
 </body>
